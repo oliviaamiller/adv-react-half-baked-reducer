@@ -16,7 +16,7 @@ const countReducer = (state, action) => {
     case 'decrement':
       return { count: state.count - 1 };
     case 'reset':
-      return { count: 0 };
+      return startingCount;
     default:
       throw new Error();
   }
@@ -32,22 +32,22 @@ export default function Counter() {
   };
 
   useEffect(() => {
-    if (count === 0) {
+    if (state.count === 0) {
       setCurrentColor(colors.yellow);
     }
 
-    if (count > 0) {
+    if (state.count > 0) {
       setCurrentColor(colors.green);
     }
 
-    if (count < 0) {
+    if (state.count < 0) {
       setCurrentColor(colors.red);
     }
-  }, [count]);
+  }, [state.count]);
 
   return (
     <main className={styles.main}>
-      <h1 style={{ color: currentColor }}>{count}</h1>
+      <h1 style={{ color: currentColor }}>{state.count}</h1>
       <div>
         <button
           type="button"
